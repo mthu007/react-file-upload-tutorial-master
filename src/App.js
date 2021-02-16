@@ -40,7 +40,7 @@ function App() {
     else
     {
       alert("Files don't match. Will show files with differences...");
-         );
+        
     }
     return xmlHttp.responseText;
   };
