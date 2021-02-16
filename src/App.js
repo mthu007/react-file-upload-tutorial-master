@@ -19,14 +19,23 @@ function App() {
   const [newUserInfo, setNewUserInfo] = useState({
     profileImages: []
   });
+
   const updateUploadedFiles = (files) =>
       setNewUserInfo({ ...newUserInfo, profileImages: files });
-//       let File = newUserInfo.profileImages[0] 
-// console.log(File.filename)
-  const handleSubmit = (event) => {
+     
+  const updateUploadedReferenceFiles = (files) =>
+      setNewUserInfo({ ...newUserInfo, profileImages: files });
+
+const handleSubmit = (event) => {
     event.preventDefault();
-    //var theUrl ="http://localhost:3002/PDFCompare/?actualPdfFile=NotSame&baselinePdfFile=baseline";
-     var theUrl ="http://localhost:3002/PDFCompare/?actualPdfFile=Same&baselinePdfFile=baseline";
+
+  var Rlist = document.getElementsByClassName("sc-iBPRYJ gExiUo")[0].innerText;
+  var Nlist = document.getElementsByClassName("sc-iBPRYJ gExiUo")[1].innerText;
+
+  var RefFile = Rlist.split("\n");
+  var NewFile = Nlist.split("\n");
+   
+     var theUrl ="http://localhost:3002/PDFCompare/?actualPdfFile="+NewFile[0]+"&baselinePdfFile="+RefFile[0];
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.send( null );
@@ -52,7 +61,7 @@ function App() {
           accept=".pdf"
           label="Reference Report"
           multiple
-          updateFilesCb={updateUploadedFiles}
+          updateFilesCb={updateUploadedReferenceFiles}
         />
         <FileUpload
           accept=".pdf"
@@ -61,7 +70,8 @@ function App() {
           updateFilesCb={updateUploadedFiles}
         />
         <button type="submit">Compare Files</button>
-       
+        <input type="hidden" id="actualPdfFile" name="actualPdfFile" value = {updateUploadedFiles} />
+        <input type="hidden" id="baselinePdfFile" name="baselinePdfFile" value = {updateUploadedReferenceFiles} />
       </form>
       
     </div>
