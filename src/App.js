@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 });
 
 function App() {
+ 
   const [newUserInfo, setNewUserInfo] = useState({
     profileImages: []
   });
@@ -49,14 +50,17 @@ const handleSubmit = (event) => {
     else
     {
       alert("Files don't match. Will show files with differences...");
-        
+     var Rform = document.getElementById("Results");
+     Rform.style.display = "block";
+     var form = document.getElementById("Upload");
+     form.style.display = "none";
     }
-    return xmlHttp.responseText;
+
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="Upload" >
         <FileUpload
           accept=".pdf"
           label="Reference Report"
@@ -70,12 +74,12 @@ const handleSubmit = (event) => {
           updateFilesCb={updateUploadedFiles}
         />
         <button type="submit">Compare Files</button>
-        <input type="hidden" id="actualPdfFile" name="actualPdfFile" value = {updateUploadedFiles} />
-        <input type="hidden" id="baselinePdfFile" name="baselinePdfFile" value = {updateUploadedReferenceFiles} />
+        
       </form>
-      
-    </div>
-    
+      <form >
+        <table id="Results" width="100%" style={{float : 'left', paddingRight : '5px',display:"none"}}   ><tr><td> <h1>Compare Results:</h1></td></tr><tr><td><img src="notSame_diff-0.png" /></td></tr></table>
+      </form>
+    </div>    
   );
 }
 
