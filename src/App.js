@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#7CA1B4',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  divClass: {
-    padding: 10,
-    height: 10,
   }
 });
 
@@ -77,12 +73,25 @@ const handleSubmit = (event) => {
 
   };
 
+  const handleViewResult = (event) => {
+    event.preventDefault();
+
+    var trButton = document.getElementById("Upload");
+    trButton.style.display = "none";
+
+    var trProccessing = document.getElementById("Results");
+    trProccessing.style.display = "block";
+ 
+  };
+
+
   return (
     <div style={{ backgroundImage: `url(Background.png)`}}>
-      <form onSubmit={handleSubmit} id="Upload" ><table width="100%" height="900" border="0">
+      <form onSubmit={handleSubmit} id="Upload" >
+        <table width="100%" height="900">
           <tr><td><img src="X3 Logo.png" /></td></tr>
         <tr><td align="center">
-        <table border ="0" width="80%">
+        <table width="80%">
         <tr>
             <td><FileUpload
           accept=".pdf"
@@ -98,11 +107,17 @@ const handleSubmit = (event) => {
           </tr>
 
           <tr><td height = "10px"></td></tr>
-          <tr id="trCompareButton"><td colspan="2" align ="center"><button type="submit">Compare Files... </button></td></tr>
+          <tr id="trCompareButton"><td colspan="2" align ="center"><button type="submit" style={{ backgroundImage: `url(Background.png)`}}>Compare Files... </button></td></tr>
           <tr id="trProccessing" style={{display: 'none'}}><td colspan="2" ><img src="Proccessing.gif" />&nbsp;&nbsp;&nbsp;&nbsp;<b>Comparing Files</b></td></tr>
           <tr><td></td></tr>
         <tr id="ResultsTDYes" style={{display: 'none'}}><td height="150px"align="center"><img src="Passed.png" /><img src="Identical tick.png" /><b>    Your files are identical</b></td></tr>
-        <tr id="ResultsTDNo" style={{display: 'none'}}><td height="150px" align="center"><img src="Failed.png" /><img src="Not identical warning.svg.png" /><b>    Your files are not identical</b></td></tr>
+        <tr id="ResultsTDNo" style={{display: 'none'}}><td height="150px" align="center"><p><img src="Failed.png" /><img src="Not identical warning.svg.png" /><b>    Your files are not identical</b></p>
+        <br/> <br/>
+        <p><table><tr align="center"><td><img src="View.png" /><a href="#" onClick={handleViewResult}>View Results</a></td>
+        <td><img src="Send.png" /><a href="url">Send Results</a></td>
+        <td><img src="Download.png" /><a href="url"> Download Results</a></td>
+        </tr></table></p>
+        </td></tr>
         </table>    
         </td></tr>
         <tr><td height="150px" align="center"></td></tr>
@@ -110,7 +125,7 @@ const handleSubmit = (event) => {
       </table>
       </form>
       <form >
-        <table id="Results" width="100%" style={{float : 'left', paddingRight : '5px',display:"none"}}   ><tr><td> <h1>Compare Results:</h1></td></tr><tr><td><img src="notSame_diff-0.png" /></td></tr></table>
+        <table id="Results" width="80%" style={{display:"none"}}><tr><td><h1>Results:<br/></h1></td></tr><tr ><td width="30%"></td><td align ="Center" width="100%"><img src="notSame_diff-0.png" /></td></tr></table>
       </form>
     </div>    
   );
