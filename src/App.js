@@ -114,8 +114,8 @@ const handleSubmit = (event) => {
         <tr id="ResultsTDNo" style={{display: 'none'}}><td height="150px" align="center"><p><img src="Failed.png" /><img src="Not identical warning.svg.png" /><b>    Your files are not identical</b></p>
         <br/> <br/>
         <p><table><tr align="center"><td><img src="View.png" /><a href="#" onClick={handleViewResult}>View Results</a></td>
-        <td><img src="Send.png" /><a href="url">Send Results</a></td>
-        <td><img src="Download.png" /><a href="url"> Download Results</a></td>
+        <td><img src="Send.png" /><a href="#">Send Results</a></td>
+        <td><img src="Download.png" /><a href="#"> Download Results</a></td>
         </tr></table></p>
         </td></tr>
         </table>    
@@ -125,7 +125,7 @@ const handleSubmit = (event) => {
       </table>
       </form>
       <form >
-        <table id="Results" width="80%" style={{display:"none"}}><tr><td><h1>Results:<br/></h1></td></tr><tr ><td width="30%"></td><td align ="Center" width="100%"><img src="notSame_diff-0.png" /></td></tr></table>
+        <table id="Results" width="80%" style={{display:"none"}}><tr><td><h1>Results:<br/></h1></td></tr><tr ><td width="30%"></td><td align ="Center" width="100%"><img src="FORM-NO-15G_NOT_SAME_diff-0.png" /></td></tr></table>
       </form>
     </div>    
   );
